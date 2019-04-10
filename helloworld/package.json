@@ -1,0 +1,76 @@
+{
+	"name": "helloworld",
+	"displayName": "helloworld",
+	"description": "helloworlddes",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.33.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.helloWorld",
+		"onCommand:extension.test",
+		"onCommand:extension.demo.testMenuShow",
+		"onCommand:markdown.showPreview"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.helloWorld",
+				"title": "Hello World"
+			},
+			{
+				"command": "extension.test",
+				"title": "Test AA"
+			},
+			{
+				"command": "markdown.showPreview",
+				"title": "显示试图"
+			},
+			{
+				"command": "extension.demo.testMenuShow",
+				"title": "这个菜单仅在JS文件中出现",
+				"icon": {
+					"light": "./images/tool-light.png",
+					"dark": "./images/tool-light.png"
+				}
+			}
+		],
+		"menus": {
+			"editor/title": [{
+				"when": "resourceLangId == markdown",
+				"command": "markdown.showPreview",
+				"alt": "markdown.showPreviewToSide",
+				"group": "navigation"
+			},
+			{
+				"when": "editorFocus",
+				"command": "extension.test",
+				"group": "navigation@2"
+			}]
+		},
+		"keybindings": [{
+			"command": "extension.test",
+			"key": "ctrl+f10",
+			"mac": "cmd+1",
+			"when": "editorTextFocus"
+		}]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28",
+		"tslint": "^5.12.1",
+		"@types/node": "^10.12.21",
+		"@types/mocha": "^2.2.42"
+	}
+}
